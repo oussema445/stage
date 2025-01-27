@@ -1,0 +1,77 @@
+<div class="container mt-5">
+  <!-- Vérification des droits d'accès -->
+  <div *ngIf="!isAdmin()" class="alert alert-danger">
+    <strong>Vous n'êtes pas autorisé à accéder à cette page.</strong>
+  </div>
+
+  <!-- Si l'utilisateur est admin, afficher le formulaire -->
+  <div *ngIf="isAdmin()">
+ <div class="product-list-container">
+    <div class="product-search">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearch()"
+        placeholder="Rechercher un produit..."
+        class="search-input"
+      />
+    </div>
+  
+    <div *ngIf="isLoading" class="loading">
+      <p>Chargement des produits...</p>
+    </div>
+  
+    <div *ngIf="!isLoading">
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Titre</th>
+            <th>Catégorie</th>
+            <th>Prix</th>
+            <th>Prix après réduction</th>
+            <th>Stock</th>
+            <th>Actif</th>
+            <th>Archivé</th>
+            <th>Archivé le</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td class="product-image">
+              <!-- Display the first image of the product -->
+              <img *ngIf="product.images.length" [src]="getProductImageUrl(product.images[0].image)" alt="Image de {{ product.title }}" />
+            </td>
+            <td>{{ product.title }}</td>
+            <td>{{ product.category.name }}</td> <!-- Assuming 'category' has a 'name' property -->
+            <td>{{ product.price | currency }}</td>
+            <td>{{ product.discountPrice | currency }}</td>
+            <td>
+              <span *ngIf="product.stock > 0" class="in-stock">En stock: {{ product.stock }}</span>
+              <span *ngIf="product.stock === 0" class="out-of-stock">Hors stock</span>
+            </td>
+            <td>
+              <span *ngIf="product.isActive" class="active">Oui</span>
+              <span *ngIf="!product.isActive" class="inactive">Non</span>
+            </td>
+            <td>
+              <span *ngIf="product.isArchived" class="archived">Oui</span>
+              <span *ngIf="!product.isArchived" class="not-archived">Non</span>
+            </td>
+            <td>{{ product.archivedAt || 'N/A' }}</td>
+            <td>
+                <button (click)="onUpdateProduct(product.id)" class="update-button">Modifier</button>
+                <button (click)="deleteProduct(product.id)" class="delete-button">Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div *ngIf="!products.length && !isLoading" class="no-products">
+      <p>Aucun produit trouvé.</p>
+    </div>
+  </div>
+  </div>
+  

@@ -1,0 +1,46 @@
+<div class="order-details" *ngIf="orderDetails.length > 0 && orderAddress">
+  <h2>Détails de la commande : {{ orderId }}</h2>
+
+  <h3>Adresse de livraison</h3>
+  <p>{{ orderAddress!.firstName }} {{ orderAddress!.lastName }}</p>
+  <p>{{ orderAddress!.email }}</p>
+  <p>{{ orderAddress!.address }}</p>
+  <p>{{ orderAddress!.city }}, {{ orderAddress!.state }}</p>
+  <p>Code postal : {{ orderAddress!.pincode }}</p>
+  <p>Numéro de téléphone : {{ orderAddress!.mobileNo }}</p>
+
+  <h3>Produits</h3>
+  <table class="product-table" *ngIf="orderDetails.length > 0">
+    <thead>
+      <tr>
+        <th>Titre du produit</th>
+        <th>Prix unitaire (DT)</th>
+        <th>Quantité</th>
+        <th>Statut</th>
+        <th>Type de paiement</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of orderDetails">
+        <td>{{ product.productTitle }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.status }}</td>
+        <td>{{ product.paymentType }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Détails du total de la commande -->
+  <div class="order-total">
+    <p><strong>Total des produits :</strong> {{ getTotalPrice() }} DT</p>
+    <p><strong>Taxe (3 DT) :</strong> 3 DT</p>
+    <p><strong>Frais de livraison (7 DT) :</strong> 7 DT</p>
+    <p><strong>Total à payer :</strong> {{ getTotalPrice() + 3 + 7 }} DT</p>
+  </div>
+</div>
+
+<!-- Message si aucune commande n'est trouvée -->
+<div *ngIf="orderDetails.length === 0">
+  <p>Chargement des détails de la commande ou aucune commande trouvée...</p>
+</div>

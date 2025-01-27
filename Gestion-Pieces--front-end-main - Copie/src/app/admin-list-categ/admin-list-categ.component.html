@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <!-- Vérification des droits d'accès -->
+  <div *ngIf="!isAdmin()" class="alert alert-danger">
+    <strong>Vous n'êtes pas autorisé à accéder à cette page.</strong>
+  </div>
+
+  <!-- Si l'utilisateur est admin, afficher le tableau des catégories -->
+  <div *ngIf="isAdmin()">
+    <div class="container">
+      <h2>Liste des catégories</h2>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Statut</th>
+            <th>Catégorie générale</th> <!-- Nouvelle colonne -->
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Parcourir les catégories et afficher leurs informations -->
+          <tr *ngFor="let category of categories">
+            <td>{{ category.id }}</td>
+            <td>{{ category.name }}</td>
+            <td>{{ category.isActive ? 'Active' : 'Inactive' }}</td>
+            <td>
+              {{ category.categGeneral?.name }}
+            </td>
+            
+            <td>
+              <!-- Boutons d'action -->
+              <button class="btn btn-warning" (click)="editCategory(category.id)">Modifier</button>
+              <button class="btn btn-danger" (click)="deleteCategory(category.id)">Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

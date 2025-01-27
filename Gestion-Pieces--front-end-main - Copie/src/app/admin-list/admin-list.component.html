@@ -1,0 +1,36 @@
+<div class="container mt-5">
+  <!-- Vérification des droits d'accès -->
+  <div *ngIf="!isAdmin()" class="alert alert-danger">
+    <strong>Vous n'êtes pas autorisé à accéder à cette page.</strong>
+  </div>
+
+  <!-- Si l'utilisateur est admin, afficher le formulaire -->
+  <div *ngIf="isAdmin()">
+<div class="container mt-5">
+    <h2 class="mb-4">Liste des Administrateurs</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Numéro de téléphone</th>
+          <th>Adresse</th>
+          <th>Ville</th>
+          <th>État</th>
+          <th>Code Postal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let admin of admins">
+          <td>{{ admin.name }}</td>
+          <td>{{ admin.email }}</td>
+          <td>{{ admin.mobileNumber }}</td>
+          <td>{{ admin.address }}</td>
+          <td>{{ admin.city }}</td>
+          <td>{{ admin.state }}</td>
+          <td>{{ admin.pincode }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>

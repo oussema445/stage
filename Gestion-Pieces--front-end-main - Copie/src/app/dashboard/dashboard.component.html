@@ -1,0 +1,103 @@
+<div class="container mt-5">
+  <!-- Vérification des droits d'accès -->
+  <div *ngIf="!isAdmin()" class="alert alert-danger">
+    <strong>Vous n'êtes pas autorisé à accéder à cette page.</strong>
+  </div>
+
+  <!-- Si l'utilisateur est admin, afficher tout le tableau de bord -->
+  <div *ngIf="isAdmin()">
+    <h2 class="text-center">Dashboard Admin</h2>
+
+    <!-- Grid de navigation pour les fonctionnalités admin -->
+    <div class="row mt-4">
+      
+      <!-- Ajouter Admin -->
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="assets/img/add-dmin.png" alt="Add Admin" class="card-img-top" />
+          <div class="card-body text-center">
+            <h5 class="card-title">Ajouter un Admin</h5>
+            <button class="btn btn-primary" (click)="navigateToAddAdmin()">Ajouter</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ajouter Produit -->
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="assets/img/add-prodect.png" alt="Add Product" class="card-img-top" />
+          <div class="card-body text-center">
+            <h5 class="card-title">Ajouter un Produit</h5>
+            <button class="btn btn-primary" (click)="navigateToAddProduct()">Ajouter</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ajouter Catégorie -->
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="assets/img/add-category.png" alt="Add Category" class="card-img-top" />
+          <div class="card-body text-center">
+            <h5 class="card-title">Ajouter une Catégorie</h5>
+            <button class="btn btn-primary" (click)="navigateToAddCategory()">Ajouter</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liste des Catégories -->
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="assets/img/list-category.png" alt="List Category" class="card-img-top" />
+          <div class="card-body text-center">
+            <h5 class="card-title">Liste des Catégories</h5>
+            <button class="btn btn-primary" (click)="navigateToListCategory()">Voir Liste</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liste des Produits -->
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="assets/img/list-prodect.png" alt="List Product" class="card-img-top" />
+          <div class="card-body text-center">
+            <h5 class="card-title">Liste des Produits</h5>
+            <button class="btn btn-primary" (click)="navigateToListProduct()">Voir Liste</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liste des Admins -->
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="assets/img/list-user.png" alt="List Admin" class="card-img-top" />
+          <div class="card-body text-center">
+            <h5 class="card-title">Liste des Admins</h5>
+            <button class="btn btn-primary" (click)="navigateToListAdmin()">Voir Liste</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liste des Utilisateurs -->
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="assets/img/list-user.png" alt="List Users" class="card-img-top" />
+          <div class="card-body text-center">
+            <h5 class="card-title">Liste des Utilisateurs</h5>
+            <button class="btn btn-primary" (click)="navigateToListUsers()">Voir Liste</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liste des Commandes -->
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="assets/img/list-orders.jpg" alt="List Orders" class="card-img-top" />
+          <div class="card-body text-center">
+            <h5 class="card-title">Liste des Commandes</h5>
+            <button class="btn btn-primary" (click)="navigateToListOrders()">Voir Liste</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

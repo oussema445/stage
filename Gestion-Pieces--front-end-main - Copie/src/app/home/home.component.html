@@ -1,0 +1,38 @@
+<section>
+  <!-- Start Search and Filter -->
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Search products" />
+  </div>
+
+  <!-- Category Filter -->
+  <div class="categories">
+    <p class="text-center fs-4">Category</p>
+    <div class="category-card" *ngFor="let category of categories">
+      <div class="card rounded-circle shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+        <div class="card-body text-center">
+          <img [src]="'http://localhost:8081/static/img/category_img/' + category.imageCategs" width="65%" height="140px" />
+          <br />
+          <a (click)="onCategorySelect(category.name)" class="text-decoration-none">{{ category.name }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Start Product List -->
+  <div class="container-fluid bg-light p-3">
+    <div class="row">
+      <p class="text-center fs-4">Latest Products</p>
+      <div class="col-md-3" *ngFor="let product of filteredProducts">
+        <div class="card shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+          <div class="card-body text-center">
+            <img [src]="getProductImageUrl(product.id)" class="" width="65%" height="140px" />
+            <p class="text-center">
+              <a (click)="onViewProduct(product.id)" class="text-decoration-none">{{ product.title }}</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Product List -->
+</section>

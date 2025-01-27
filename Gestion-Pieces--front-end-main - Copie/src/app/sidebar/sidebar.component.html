@@ -1,0 +1,9 @@
+<div class="sidebar">
+    <ul>
+      <!-- Loop through the categories and display them -->
+      <li *ngFor="let category of categories">
+        <a [routerLink]="['/category', category.id]">{{ category.name }}</a>
+      </li>
+    </ul>
+  </div>
+  

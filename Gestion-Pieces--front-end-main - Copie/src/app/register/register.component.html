@@ -1,0 +1,120 @@
+<div class="container">
+    <h2>Inscription</h2>
+    <form (submit)="register()" #registerForm="ngForm">
+      
+      <div class="form-group">
+        <label for="name">Nom</label>
+        <input 
+          type="text" 
+          [(ngModel)]="user['name']" 
+          name="name" 
+          class="form-control" 
+          required 
+          minlength="3"
+          #name="ngModel">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+          <div *ngIf="name.errors?.['required']">Le nom est requis.</div>
+          <div *ngIf="name.errors?.['minlength']">Le nom doit comporter au moins 3 caractères.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="mobileNumber">Numéro de téléphone</label>
+        <input 
+          type="text" 
+          [(ngModel)]="user['mobileNumber']" 
+          name="mobileNumber" 
+          class="form-control" 
+          required 
+          pattern="^\d{8}$"
+          #mobileNumber="ngModel">
+        <div *ngIf="mobileNumber.invalid && (mobileNumber.dirty || mobileNumber.touched)" class="text-danger">
+          <div *ngIf="mobileNumber.errors?.['required']">Le numéro de téléphone est requis.</div>
+          <div *ngIf="mobileNumber.errors?.['pattern']">Le numéro de téléphone doit contenir exactement 8 chiffres.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          [(ngModel)]="user['email']" 
+          name="email" 
+          class="form-control" 
+          required 
+          email
+          (ngModelChange)="checkEmailExists()"
+          #email="ngModel">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+          <div *ngIf="email.errors?.['required']">L'email est requis.</div>
+          <div *ngIf="email.errors?.['email']">Veuillez entrer un email valide.</div>
+        </div>
+        <div *ngIf="emailExists && email.touched" class="text-danger">
+          Cet email est déjà utilisé. Veuillez en choisir un autre.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="address">Adresse</label>
+        <input 
+          type="text" 
+          [(ngModel)]="user['address']" 
+          name="address" 
+          class="form-control" 
+          required 
+          minlength="5"
+          #address="ngModel">
+        <div *ngIf="address.invalid && (address.dirty || address.touched)" class="text-danger">
+          <div *ngIf="address.errors?.['required']">L'adresse est requise.</div>
+          <div *ngIf="address.errors?.['minlength']">L'adresse doit comporter au moins 5 caractères.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="pincode">Code Postal</label>
+        <input 
+          type="text" 
+          [(ngModel)]="user['pincode']" 
+          name="pincode" 
+          class="form-control" 
+          required 
+          pattern="^\d{4,6}$"
+          #pincode="ngModel">
+        <div *ngIf="pincode.invalid && (pincode.dirty || pincode.touched)" class="text-danger">
+          <div *ngIf="pincode.errors?.['required']">Le code postal est requis.</div>
+          <div *ngIf="pincode.errors?.['pattern']">Le code postal doit contenir entre 4 et 6 chiffres.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input 
+          type="password" 
+          [(ngModel)]="user['password']" 
+          name="password" 
+          class="form-control" 
+          required 
+          minlength="6"
+          #password="ngModel">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+          <div *ngIf="password.errors?.['required']">Le mot de passe est requis.</div>
+          <div *ngIf="password.errors?.['minlength']">Le mot de passe doit comporter au moins 6 caractères.</div>
+        </div>
+      </div>
+  
+      <button 
+      type="submit" 
+      class="btn btn-primary" 
+      [disabled]="registerForm.invalid || emailExists">
+      S'inscrire
+    </button>
+    </form>
+  
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+  
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  </div>
+  

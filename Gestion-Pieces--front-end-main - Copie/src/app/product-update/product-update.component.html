@@ -1,0 +1,93 @@
+
+<div class="container mt-5">
+  <!-- Vérification des droits d'accès -->
+  <div *ngIf="!isAdmin()" class="alert alert-danger">
+    <strong>Vous n'êtes pas autorisé à accéder à cette page.</strong>
+  </div>
+
+  <!-- Si l'utilisateur est admin, afficher tout le tableau de bord -->
+  <div *ngIf="isAdmin()">
+<div class="container">
+  <form (ngSubmit)="updateProduct()" #productForm="ngForm">
+    <!-- Partie de modification du produit -->
+    <div>
+      <h2>Mettre à jour le produit :</h2>
+    </div>
+
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Référence</label>
+      <input readonly type="text" [(ngModel)]="currentProduct.id" name="idProduct" class="form-control" required>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Nom du produit</label>
+      <input type="text" [(ngModel)]="currentProduct.title" name="name" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Catégorie</label>
+      <select [(ngModel)]="currentCategoryId" name="category" class="form-control" required>
+        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+      </select>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Prix</label>
+      <input type="number" [(ngModel)]="currentProduct.price" name="price" class="form-control" required>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Stock</label>
+      <input type="number" [(ngModel)]="currentProduct.stock" name="stock" class="form-control" required>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Réduction (%)</label>
+      <input type="number" [(ngModel)]="currentProduct.discount" name="discount" class="form-control" required>
+    </div>
+
+    <!-- Partie de gestion des images -->
+    <div class="col-sm-16 col-md-16 col-lg-16">
+      <label class="mb-2">Ajouter une nouvelle image :</label>
+      <input type="file" (change)="onImageUpload($event)" class="form-control">
+    </div>
+
+    <div class="mt-2">
+      <button type="button" (click)="onAddImage()" class="btn btn-success">Ajouter Image</button>
+    </div>
+
+    <div class="col-sm-16 col-md-16 col-lg-16">
+      <img *ngIf="myImage" [src]="myImage" class="card-img-top img-fluid rounded-start"
+        style="width: 500px; height: 300px" />
+    </div>
+
+    <!-- Liste des images du produit -->
+    <div class="card shadow mb-4">
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Images</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let img of currentProduct.images">
+              <td><img class="card-img-top img-responsive" [src]="'data:' + img.type + ';base64,' + img.image"
+                  style="height:50px;width:100px"></td>
+              <td style="width:20%">
+                <button type="button" class="btn btn-danger" (click)="deleteImage(img)">Supprimer</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Bouton de mise à jour du produit -->
+    <div class="mt-2">
+      <button type="submit" [disabled]="productForm.invalid" class="btn btn-success">Modifier le produit</button>
+    </div>
+  </form>
+</div>
+  </div>

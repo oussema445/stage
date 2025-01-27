@@ -1,0 +1,64 @@
+<div class="order-form-container">
+    <h2>Adresse de Facturation</h2>
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="firstName">Prénom :</label>
+        <input type="text" id="firstName" formControlName="firstName" placeholder="Entrez votre prénom" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="lastName">Nom :</label>
+        <input type="text" id="lastName" formControlName="lastName" placeholder="Entrez votre nom" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email :</label>
+        <input type="email" id="email" formControlName="email" placeholder="Entrez votre email" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="mobileNo">Numéro de téléphone :</label>
+        <input type="text" id="mobileNo" formControlName="mobileNo" placeholder="Entrez votre numéro de téléphone" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="address">Adresse :</label>
+        <input type="text" id="address" formControlName="address" placeholder="Entrez votre adresse" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="city">Ville :</label>
+        <input type="text" id="city" formControlName="city" placeholder="Entrez votre ville" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="state">Gouvernorat :</label>
+        <input type="text" id="state" formControlName="state" placeholder="Entrez votre gouvernorat" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="pincode">Code postal :</label>
+        <input type="text" id="pincode" formControlName="pincode" placeholder="Entrez votre code postal" required />
+      </div>
+  
+      <h3>Récapitulatif de la commande</h3>
+      <div class="order-summary">
+        <p>Prix total des articles : ₹ {{ getTotalPrice() }}</p>
+        <p>Frais de livraison : ₹ {{ deliveryFee }}</p>
+        <p>Taxes : ₹ {{ tax }}</p>
+        <p><strong>Total : ₹ {{ getTotalOrderPrice() }}</strong></p>
+      </div>
+  
+      <div class="form-group">
+        <label for="paymentType">Type de paiement :</label>
+        <select id="paymentType" formControlName="paymentType" required>
+          <option value="" disabled selected>--Sélectionner--</option>
+          <option value="Cash on Delivery">Paiement à la livraison</option>
+          <option value="Online Payment">Paiement en ligne</option>
+        </select>
+      </div>
+  
+      <button type="submit" class="btn-submit" [disabled]="!orderForm.valid">Passer la commande</button>
+    </form>
+  </div>
+  

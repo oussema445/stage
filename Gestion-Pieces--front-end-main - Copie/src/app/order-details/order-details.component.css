@@ -1,0 +1,38 @@
+.order-details {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.product-list {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+h3 {
+  color: #2a85ff;
+}
+
+.product-list p {
+  margin: 5px 0;
+}
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.product-table th, .product-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.product-table th {
+  background-color: #f2f2f2;
+}
+  

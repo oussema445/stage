@@ -1,0 +1,65 @@
+/* Global style */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+  }
+  
+  .wrapper {
+    display: flex;
+    flex-direction: row; /* Alignement horizontal pour sidebar et contenu */
+    height: 100vh; /* Prend toute la hauteur de la fenêtre */
+  }
+  
+  /* Navbar */
+  app-navbar {
+    width: 100%;
+    position: fixed; /* Navbar fixe en haut */
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    background-color: white;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    position: absolute;
+    top: 60px; /* Ajuster en fonction de la hauteur de la navbar */
+    left: 0;
+    bottom: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Barre de défilement si le contenu dépasse la hauteur */
+  }
+  
+  /* Style des liens dans la sidebar */
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar li a {
+    color: #007bff; /* Texte bleu */
+    text-decoration: none;
+    border: 1px solid #007bff; /* Cadre bleu */
+    border-radius: 5px;
+    padding: 10px;
+    display: block;
+    text-align: center;
+  }
+  
+  .sidebar li a:hover {
+    background-color: #007bff; /* Fond bleu au survol */
+    color: white; /* Texte blanc au survol */
+  }
+  
+  
+  

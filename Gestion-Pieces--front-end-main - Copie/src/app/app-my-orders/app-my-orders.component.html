@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>Mes Commandes</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>ID de la commande</th>
+        <th>Date</th>
+        <th>Détails du produit</th>
+        <th>Prix total de la commande (sans frais)</th>
+        <th>Statut</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let orderGroup of groupedOrders">
+        <td>{{ orderGroup[0].id }}</td>
+        <td>{{ orderGroup[0].orderId }}</td>
+        <td>{{ orderGroup[0].orderDate | date }}</td>
+        <td>
+          <div *ngFor="let order of orderGroup">
+            {{ order.productTitle }}<br>
+            Quantité : {{ order.quantity }}<br>
+            Prix unitaire : {{ order.price | currency:'TND' }}<br>
+          </div>
+        </td>
+        <td>{{ getTotalPrice(orderGroup) | currency:'TND' }}</td>
+        <td>{{ orderGroup[0].status }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="cancelOrder(orderGroup[0].id)">Annuler</button>
+          <button class="btn btn-primary" (click)="viewOrderDetails(orderGroup[0].orderId)">Voir plus</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

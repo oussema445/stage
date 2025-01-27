@@ -1,0 +1,22 @@
+<!-- src/app/components/add-categgeneral/add-categgeneral.component.html -->
+<div class="container mt-5">
+    <h2 class="text-center">Ajouter une Catégorie Générale</h2>
+    <form (ngSubmit)="saveCategGeneral()">
+      <!-- Champ pour le nom de la catégorie générale -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Nom de la Catégorie Générale</label>
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          [(ngModel)]="categGeneral.name"
+          name="name"
+          required
+        />
+      </div>
+  
+      <!-- Bouton pour soumettre le formulaire -->
+      <button type="submit" class="btn btn-primary">Ajouter la Catégorie Générale</button>
+    </form>
+  </div>
+  

@@ -1,0 +1,159 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+<!-- Section du logo et titre -->
+<div class="top-content" id="topContent">
+  <div class="logo-title">
+    <div class="site-logo">
+      <img src="assets/img/img4.jpg" alt="Logo" width="80" height="60">
+    </div>
+    <div class="site-title">
+      <h1>Ste Frères Mghirbi D'Électricité</h1>
+    </div>
+  </div>
+
+  <!-- Section de recherche -->
+  <div class="search-bar-container">
+    <!-- Barre de recherche -->
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearch()"
+      placeholder="Rechercher un produit Selon..."
+      class="search-input"
+    />
+    <select [(ngModel)]="searchType" class="search-select" (change)="onSearch()">
+      <option value="name">Nom</option>
+      <option value="ref">Référence</option>
+    </select>
+  </div>
+  
+</div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top" id="navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="#">Mon E-commerce</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link text-white" href="#">Accueil</a>
+        </li>
+
+        <!-- Catégories Générales avec Dropdown -->
+        <li class="nav-item dropdown" *ngFor="let categGeneral of categGenerals">
+          <a class="nav-link dropdown-toggle text-white" 
+             href="#" 
+             id="navbarDropdown{{ categGeneral.id }}" 
+             role="button" 
+             data-toggle="dropdown" 
+             aria-haspopup="true" 
+             aria-expanded="false">
+            {{ categGeneral.name }}
+          </a>
+          <div class="dropdown-menu" [attr.aria-labelledby]="'navbarDropdown' + categGeneral.id">
+            <!-- Catégories dans chaque catégorie générale -->
+            <a *ngFor="let category of categGeneral.categories" class="dropdown-item" href="#">
+              {{ category.name }}
+            </a>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Right-side options -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white" (click)="toggleCart()">
+            <img src="assets/img/panier.jpg" alt="Panier" width="24" height="24" class="d-inline-block align-text-top">
+            Panier
+          </a>
+        </li>
+
+        <!-- Conditionally display buttons based on user login status -->
+        <li *ngIf="!isLoggedIn" class="nav-item">
+          <a class="nav-link text-white" href="/register">S'inscrire</a>
+        </li>
+        <li *ngIf="!isLoggedIn" class="nav-item">
+          <a class="nav-link text-white" href="/login">Se connecter</a>
+        </li>
+
+        <!-- If logged in, show user info and logout -->
+        <li *ngIf="isLoggedIn" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ userName }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="profil">Mon Profil</a>
+            <a class="dropdown-item" href="orders">Mes Commandes</a>
+            <a *ngIf="isAdmin()" class="dropdown-item" href="dashboard">Dashboard Admin</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logout()">Déconnexion</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+<!-- Panier (Drawer) -->
+<div id="cartDrawer" class="cart-drawer">
+  <div class="cart-header">
+    <h4>Mon Panier</h4>
+    <button class="close-btn" (click)="toggleCart()">×</button>
+  </div>
+  <div class="cart-content">
+    <div *ngIf="items.length === 0" class="alert alert-warning">
+      Votre panier est vide.
+    </div>
+    <div *ngIf="items.length > 0">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items">
+            <td>{{ item.title }}</td>
+            <td>{{ item.price | currency:'TND' }}</td>
+            <td>
+              <input 
+                type="number" 
+                min="1" 
+                [(ngModel)]="item.quantity" 
+                (change)="updateQuantity(item)" 
+                class="form-control" 
+                style="width: 60px;"
+                [value]="item.quantity || 1">
+            </td>
+            <td>{{ item.price * item.quantity | currency:'TND' }}</td>
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="removeItem(item.id)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="cart-total">
+        <p><strong>Total: </strong> {{ totalPrice | currency:'TND' }}</p>
+      </div>
+      <div *ngIf="message" class="alert alert-info">
+        {{ message }}
+      </div>
+      
+      <div class="text-end">
+        <button class="btn btn-primary btn-space" (click)="clearCart()">Vider le Panier</button>
+        <button class="btn btn-success" (click)="placeOrder()">Commander</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="backdrop" class="backdrop" (click)="toggleCart()"></div>

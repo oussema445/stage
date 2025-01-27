@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <h2 class="mb-4">Liste des Utilisateurs</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Numéro de téléphone</th>
+          <th>Adresse</th>
+          <th>Ville</th>
+          <th>État</th>
+          <th>Code Postal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.mobileNumber }}</td>
+          <td>{{ user.address }}</td>
+          <td>{{ user.city }}</td>
+          <td>{{ user.state }}</td>
+          <td>{{ user.pincode }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

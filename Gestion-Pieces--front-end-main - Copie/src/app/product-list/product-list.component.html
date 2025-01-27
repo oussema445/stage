@@ -1,0 +1,41 @@
+<div class="product-card-container">
+  <div
+    *ngFor="let product of filteredProducts"
+    class="product-card"
+    (click)="onViewProduct(product.id)"
+  >
+    <div class="product-image">
+      <!-- Iterate over product images and display each one -->
+      <img
+        *ngFor="let img of product.images"
+        [src]="getProductImageUrl(img.image)"
+        alt="Image de {{ product.title }}"
+      />
+    </div>
+    <div class="product-details">
+      <h3 class="product-title">{{ product.title }}</h3>
+      <div>
+        {{ product?.category?.name }}
+      </div>
+      <p class="product-price">{{ product.price | currency }}</p>
+      <div class="product-stock">
+        <span *ngIf="product.stock > 0" class="in-stock">En stock: {{ product.stock }}</span>
+        <span *ngIf="product.stock === 0" class="out-of-stock">Hors stock</span>
+      </div>
+      <button
+        (click)="addToCart(product); $event.stopPropagation()"
+        class="btn btn-danger col-md-12"
+      >
+        Ajouter au panier
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isLoading" class="loading">
+  <p>Chargement des produits...</p>
+</div>
+
+<div *ngIf="!filteredProducts.length && !isLoading" class="no-products">
+  <p>Aucun produit trouvé.</p>
+</div>

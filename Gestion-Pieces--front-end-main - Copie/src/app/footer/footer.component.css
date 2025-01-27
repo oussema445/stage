@@ -1,0 +1,14 @@
+.footer {
+    background-color: #007bff; /* Bleu Bootstrap */
+  }
+  
+  .footer a {
+    text-decoration: none;
+    color: #ffffff; /* Texte blanc */
+  }
+  
+  .footer a:hover {
+    color: #dcdcdc; /* Gris clair au survol */
+    text-decoration: underline;
+  }
+  

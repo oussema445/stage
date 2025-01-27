@@ -1,0 +1,194 @@
+/* Conteneur principal */
+.product-list-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Barre de recherche */
+.product-search {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: #007bff;
+}
+
+/* Conteneur des cartes de produits */
+.product-card-container {
+  display: grid; /* Utilisation de grid pour une disposition propre */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Crée une grille qui ajuste le nombre de colonnes en fonction de la largeur de l'écran */
+  gap: 20px; /* Espacement entre les cartes */
+  justify-content: center; /* Centrer la grille */
+}
+
+/* Carte produit */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  transition: transform 0.3s ease; /* Pour l'effet de survol */
+}
+
+.product-card:hover {
+  transform: scale(1.05); /* Effet zoom au survol */
+}
+
+/* Image du produit */
+.product-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Détails du produit */
+.product-details {
+  padding: 20px;
+}
+
+.product-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.product-category,
+.product-price {
+  font-size: 16px;
+  color: #666;
+}
+
+.product-stock {
+  margin: 10px 0;
+}
+
+.in-stock {
+  color: green;
+}
+
+.out-of-stock {
+  color: red;
+}
+
+.view-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.view-button:hover {
+  background-color: #0056b3;
+}
+
+/* Affichage lors du chargement des produits */
+.loading {
+  text-align: center;
+  font-size: 18px;
+  color: #007bff;
+}
+
+/* Affichage lorsqu'il n'y a pas de produits */
+.no-products {
+  text-align: center;
+  font-size: 18px;
+  color: #999;
+}
+
+/* Responsive pour les écrans plus petits */
+@media (max-width: 768px) {
+  .product-card {
+    width: 100%; /* Une carte par ligne sur les écrans moyens */
+  }
+}
+
+@media (max-width: 480px) {
+  .product-card {
+    width: 100%; /* Une carte par ligne sur les petits écrans */
+  }
+}
+
+/* Global style */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row; /* Alignement horizontal pour sidebar et contenu */
+  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+}
+
+/* Navbar */
+app-navbar {
+  width: 100%;
+  position: fixed; /* Navbar fixe en haut */
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: white;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+  position: absolute;
+  top: 60px; /* Ajuster en fonction de la hauteur de la navbar */
+  left: 0;
+  bottom: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Barre de défilement si le contenu dépasse la hauteur */
+}
+
+/* Style des liens dans la sidebar */
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar li a {
+  color: #007bff; /* Texte bleu */
+  text-decoration: none;
+  border: 1px solid #007bff; /* Cadre bleu */
+  border-radius: 5px;
+  padding: 10px;
+  display: block;
+  text-align: center;
+}
+
+.sidebar li a:hover {
+  background-color: #007bff; /* Fond bleu au survol */
+  color: white; /* Texte blanc au survol */
+}

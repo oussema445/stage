@@ -1,0 +1,61 @@
+<div class="container">
+    <h2>Liste des Commandes</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>ID de la commande</th>
+          <th>Date</th>
+          <th>Détails du produit</th>
+          <th>Prix</th>
+          <th>Statut</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order.id }}</td>
+          <td>{{ order.orderId }}</td>
+          <td>{{ order.orderDate | date }}</td>
+          <td>
+            {{ order.productTitle }}<br>
+            Quantité : {{ order.quantity }}<br>
+            Prix total : {{ (order.quantity * order.price) | currency:'TND' }}
+          </td>
+          <td>{{ order.price | currency:'TND' }}</td>
+          <td>
+            <!-- Liste déroulante pour changer le statut -->
+            <select
+              [(ngModel)]="order.status"
+              (change)="updateStatus(order.id, order.status)"
+              class="form-select"
+            >
+              <option *ngFor="let status of statuses" [value]="status.key">
+                {{ status.label }}
+              </option>
+            </select>
+          </td>
+          <td>
+            <button class="btn btn-info" (click)="viewOrderDetails(order)">Voir</button>
+            <button class="btn btn-danger" (click)="cancelOrder(order.id)">Annuler</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Affichage des détails dans une carte -->
+    <div *ngIf="selectedOrder" class="card mt-4">
+      <div class="card-body">
+        <h5 class="card-title">Détails de la Commande</h5>
+        <p><strong>Adresse :</strong> {{ selectedOrder.address }}</p>
+        <p><strong>Produits commandés :</strong></p>
+        <ul>
+          <li *ngFor="let item of selectedOrder.products">
+            {{ item.productTitle }} - Quantité : {{ item.quantity }} - Prix : {{ item.price | currency:'TND' }}
+          </li>
+        </ul>
+        <p><strong>Total :</strong> {{ selectedOrder.totalPrice | currency:'TND' }}</p>
+      </div>
+    </div>
+  </div>
+  

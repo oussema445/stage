@@ -1,0 +1,131 @@
+/* Container for search and category */
+.search-container {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .categories {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px 0;
+  }
+  
+  .category-card {
+    flex: 0 0 auto;
+    margin-right: 15px;
+    cursor: pointer;
+  }
+  
+  .category-card img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .category-card a {
+    display: block;
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  /* Styles for product list */
+  .container-fluid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .col-md-3 {
+    flex: 1 1 22%;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card img {
+    max-width: 100%;
+    height: 140px;
+    object-fit: cover;
+  }
+  
+  /* Scrollable container for categories */
+  .categories {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+  }
+  
+  .categories::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .categories::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+  
+  /* Arrow navigation buttons */
+  .arrow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .arrow-btn-left {
+    left: 10px;
+  }
+  
+  .arrow-btn-right {
+    right: 10px;
+  }
+  
+  .arrow-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .col-md-3 {
+      flex: 1 1 48%;
+    }
+  
+    .category-card {
+      flex: 0 0 45%;
+      margin-right: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .col-md-3 {
+      flex: 1 1 100%;
+    }
+  
+    .category-card {
+      flex: 0 0 100%;
+    }
+  }
+  

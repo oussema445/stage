@@ -1,0 +1,198 @@
+/* Top Content */
+.top-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #007bff;
+  border-bottom: 1px solid #ddd;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+}
+
+.site-logo img {
+  margin-right: 10px;
+}
+
+.site-title h1 {
+  color: #ffd700;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px #000;
+  margin: 0;
+}
+
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: 250px;
+  width: 40%; /* Permet à ce conteneur de s'étendre sur toute la largeur */
+}
+
+.search-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-input {
+  flex-grow: 1; /* Permet à la barre de recherche de s'étendre */
+  max-width: 100%; /* La barre de recherche occupe tout l'espace disponible */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #007bff !important; /* Couleur de fond bleue */
+  padding: 10px 20px; /* Padding pour donner de l'espace autour du contenu */
+  z-index: 1000; /* Assure que la navbar se place sous le top-content */
+  position: relative; /* Positionnement normal sous le top-content */
+  margin-top: 80px; /* Décalage de la navbar juste sous le top-content */
+}
+
+/* Liens de navigation */
+.navbar-nav .nav-item .nav-link {
+  color: white !important; /* Couleur du texte des liens */
+  font-weight: bold; /* Texte en gras */
+  text-transform: uppercase; /* Mettre les liens en majuscules */
+  padding: 10px 15px; /* Padding pour espacer les liens */
+  transition: all 0.3s ease; /* Transition fluide lors du survol */
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #ffd700 !important; /* Couleur dorée au survol */
+  background-color: rgba(0, 0, 0, 0.1); /* Légère ombre de fond au survol */
+  border-radius: 5px; /* Arrondir les bords des liens */
+}
+
+/* Comportement de la navbar sur mobile */
+.navbar-toggler {
+  border-color: #fff; /* Bordure de couleur blanche pour l'icône du menu mobile */
+}
+
+.navbar-toggler-icon {
+  background-color: #fff; /* Couleur de l'icône hamburger */
+}
+
+/* Navbar mobile : menu déroulant */
+@media (max-width: 992px) {
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 10px 0; /* Espacement vertical sur mobile */
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 18px; /* Augmenter la taille du texte sur mobile */
+  }
+}
+
+/* Panier icon style */
+.navbar-nav .nav-item a {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-nav .nav-item a img {
+  margin-right: 8px;
+}
+
+/* Ajouter un espacement à droite des éléments du menu */
+.navbar-nav.ml-auto {
+  margin-left: auto;
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  width: auto; /* Laisser la largeur s'ajuster automatiquement */
+  max-width: 500px; /* Vous pouvez ajuster cette valeur selon la largeur que vous souhaitez */
+  height: 100%;
+  background-color: white;
+  position: fixed;
+  top: 120px; /* Positionne le panier juste sous la navbar */
+  right: -500px; /* Cache le panier au départ */
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+  overflow-y: auto;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2); /* Ajoute une ombre sur le côté */
+}
+
+.cart-drawer.open {
+  right: 0;
+}
+
+/* Panier header */
+.cart-header {
+  padding: 10px;
+  background-color: #ff3300;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Panier content */
+.cart-content {
+  padding: 10px;
+  max-height: calc(100vh - 120px); /* Limite la hauteur pour éviter le débordement */
+  overflow-y: auto;
+}
+
+/* Backdrop (Fond sombre) */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 999;
+}
+
+.backdrop.visible {
+  display: block;
+}
+
+/* Basic table styles */
+.table {
+  width: 100%; /* Le tableau occupe toute la largeur de son conteneur */
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 8px;
+  border: 0px solid #ddd;
+}
+
+/* Aligning text to the right */
+.text-end {
+  text-align: right;
+  margin-top: 15px;
+}
+
+.btn-space {
+  margin-right: 30px;  /* Ajustez la valeur selon vos besoins */
+}
+.navbar-nav.ml-auto {
+  margin-left: auto; /* Aligner les éléments à droite */
+  display: flex;
+  align-items: center; /* Centrer les éléments verticalement */
+}
+
+.navbar-nav.ml-auto .nav-item {
+  margin-left: 20px; /* Espacement entre les éléments */
+}
+

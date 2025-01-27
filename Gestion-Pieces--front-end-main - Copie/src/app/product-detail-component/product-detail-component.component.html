@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Product Details</title>
+</head>
+<body>
+  <section>
+    <div class="container card-sh">
+      <div class="col-md-12 p-5">
+        <div class="row product-section">
+          <!-- Product Image Section -->
+          <div class="product-image">
+            <img 
+              *ngIf="product?.images && productImages.length > 0" 
+              [src]="'assets/img/product_img/' + productImages[0]" 
+              alt="Product Image" 
+              width="300px" 
+              height="250px">
+            <img 
+              *ngIf="!product?.images || productImages.length === 0" 
+              src="assets/img/default-product.png" 
+              alt="Default Product Image" 
+              width="300px" 
+              height="250px">
+          </div>
+
+          <!-- Product Info Section -->
+          <div class="product-info">
+            <p class="fs-3">{{ product?.title || 'Product Title' }}</p>
+            <p>
+              <span class="fw-bold">Product Details:</span><br>
+              Status:
+              <span *ngIf="(product?.stock ?? 0) > 0" class="badge bg-success">Available</span>
+              <span *ngIf="(product?.stock ?? 0) === 0" class="badge bg-warning">Out of stock</span>
+              <br>
+              Category: {{ product?.category?.name || 'Uncategorized' }}<br>
+              Policy: 7 Days Replacement & Return
+            </p>
+            <div class="price-container">
+              <p class="fs-5 fw-bold">
+                Price: 
+                <i class="fas fa-rupee-sign"></i> {{ product?.discountPrice || 'N/A' }}
+                <span class="price-original">{{ product?.price || 'N/A' }}</span>
+                <span class="price-discount">{{ product?.discount || 0 }}% off</span>
+              </p>
+            </div>
+
+            <div class="nav-section">
+              <div class="col-md-4 text-success text-center p-2">
+                <i class="fas fa-money-bill-wave fa-2x"></i>
+                <p>Cash On Delivery</p>
+              </div>
+              <div class="col-md-4 text-danger text-center p-2">
+                <i class="fas fa-undo-alt fa-2x"></i>
+                <p>Return Available</p>
+              </div>
+              <div class="col-md-4 text-primary text-center p-2">
+                <i class="fas fa-truck-moving fa-2x"></i>
+                <p>Free Shipping</p>
+              </div>
+            </div>
+
+            <button 
+              (click)="product ? addToCart(product) : null" 
+              class="btn btn-danger col-md-12">
+              Ajouter au panier
+            </button>
+            <div *ngIf="isMessageVisible" class="message">
+              {{ message }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Details and Description Section -->
+        <div class="details-description">
+          <!-- Product Description Section -->
+          <div 
+            class="section" 
+            [ngClass]="{'active-section': activeSection === 'description'}"
+            (click)="toggleSection('description')">
+            <h4>Description</h4>
+            <p *ngIf="activeSection === 'description'">{{ product?.description || 'No description available.' }}</p>
+          </div>
+
+          <!-- Product Reference Section -->
+          <div 
+            class="section" 
+            [ngClass]="{'active-section': activeSection === 'reference'}"
+            (click)="toggleSection('reference')">
+            <h4>Référence Produit</h4>
+            <p *ngIf="activeSection === 'reference'">{{ product?.ref || 'No reference available.' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

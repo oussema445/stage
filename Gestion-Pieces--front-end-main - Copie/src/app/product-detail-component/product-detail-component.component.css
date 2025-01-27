@@ -1,0 +1,60 @@
+/* Ajoutez ce style dans votre fichier CSS associé */
+
+.message {
+  margin-top: 10px; /* Un peu d'espace au-dessus du message */
+  color: #28a745; /* Couleur verte pour indiquer le succès */
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+.nav-section {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.nav-section button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-original {
+  text-decoration: underline;
+  color: gray;
+}
+
+.price-discount {
+  color: green;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+/* Style pour les sections product details et description */
+.details-description {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.details-description .section {
+  width: 48%;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Style pour afficher la section active */
+.active-section {
+  background-color: #f8f9fa;
+}
+

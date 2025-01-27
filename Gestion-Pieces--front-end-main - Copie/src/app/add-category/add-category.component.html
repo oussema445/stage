@@ -1,0 +1,68 @@
+<div class="container mt-5">
+  <!-- Vérification des droits d'accès -->
+  <div *ngIf="!isAdmin()" class="alert alert-danger">
+    <strong>Vous n'êtes pas autorisé à accéder à cette page.</strong>
+  </div>
+
+  <!-- Si l'utilisateur est admin, afficher le formulaire -->
+  <div *ngIf="isAdmin()">
+    <h2 class="text-center">Ajouter une Catégorie</h2>
+    <form (ngSubmit)="saveCategory()" enctype="multipart/form-data">
+      <!-- Champ pour le nom de la catégorie -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Nom de la Catégorie</label>
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          [(ngModel)]="category.name"
+          name="name"
+          required
+        />
+      </div>
+
+      <!-- Sélection du statut (actif/inactif) -->
+      <div class="mb-3">
+        <label for="isActive" class="form-label">Statut</label>
+        <select
+          id="isActive"
+          class="form-control"
+          [(ngModel)]="category.isActive"
+          name="isActive"
+          required
+        >
+          <option [value]="true">Actif</option>
+          <option [value]="false">Inactif</option>
+        </select>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="categGeneral">Catégorie Générale</label>
+        <select
+          id="categGeneral"
+          class="form-control"
+          [(ngModel)]="selectedGeneralCategory"
+          name="categGeneral"
+          required
+        >
+          <option *ngFor="let categ of categoriesGeneral" [ngValue]="categ">
+            {{ categ.name }}
+          </option>
+        </select>
+      </div>
+      <!-- Téléchargement de l'image de la catégorie -->
+      <div class="mb-3">
+        <label for="image" class="form-label">Télécharger l'Image</label>
+        <input
+          type="file"
+          id="image"
+          class="form-control"
+          (change)="onFileSelected($event)"
+        />
+      </div>
+
+      <!-- Bouton pour soumettre le formulaire -->
+      <button type="submit" class="btn btn-primary">Enregistrer la Catégorie</button>
+    </form>
+  </div>
+</div>

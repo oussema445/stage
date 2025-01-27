@@ -1,0 +1,50 @@
+<div class="container mt-5" *ngIf="isAdmin(); else forbiddenTemplate">
+  <h2>Ajouter un administrateur</h2>
+  <form (ngSubmit)="addAdmin()">
+    <div class="form-group">
+      <label for="name">Nom</label>
+      <input type="text" id="name" [(ngModel)]="user.name" name="name" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" [(ngModel)]="user.email" name="email" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" [(ngModel)]="user.password" name="password" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirmer le mot de passe</label>
+      <input type="password" id="confirmPassword" [(ngModel)]="user.confirmPassword" name="confirmPassword" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="mobileNumber">Numéro de téléphone</label>
+      <input type="text" id="mobileNumber" [(ngModel)]="user.mobileNumber" name="mobileNumber" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="address">Adresse</label>
+      <input type="text" id="address" [(ngModel)]="user.address" name="address" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="city">Ville</label>
+      <input type="text" id="city" [(ngModel)]="user.city" name="city" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="state">État</label>
+      <input type="text" id="state" [(ngModel)]="user.state" name="state" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="pincode">Code postal</label>
+      <input type="text" id="pincode" [(ngModel)]="user.pincode" name="pincode" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success">Ajouter</button>
+  </form>
+</div>
+
+<ng-template #forbiddenTemplate>
+<div class="container mt-5">
+  <div class="alert alert-danger">
+    <strong>Vous n'êtes pas autorisé à accéder à cette page.</strong>
+  </div>
+</div>
+</ng-template>
